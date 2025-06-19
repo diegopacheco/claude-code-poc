@@ -6,14 +6,17 @@ export default function AddTeamMember() {
   const [email, setEmail] = useState('');
   const [picture, setPicture] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (name && email && picture) {
-      store.addTeamMember({ name, email, picture });
-      setName('');
-      setEmail('');
-      setPicture('');
-      alert('Team member added successfully!');
+      try {
+        await store.addTeamMember({ name, email, picture });
+        setName('');
+        setEmail('');
+        setPicture('');
+      } catch (error) {
+        console.error('Failed to add team member:', error);
+      }
     }
   };
 

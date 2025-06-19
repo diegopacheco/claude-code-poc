@@ -5,13 +5,16 @@ export default function CreateTeam() {
   const [name, setName] = useState('');
   const [logo, setLogo] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (name && logo) {
-      store.addTeam({ name, logo });
-      setName('');
-      setLogo('');
-      alert('Team created successfully!');
+      try {
+        await store.addTeam({ name, logo });
+        setName('');
+        setLogo('');
+      } catch (error) {
+        console.error('Failed to create team:', error);
+      }
     }
   };
 

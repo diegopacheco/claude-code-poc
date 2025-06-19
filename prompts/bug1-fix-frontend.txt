@@ -1,0 +1,4 @@
+Bug 1: Make sure frontend is working
+
+Make sure all frontend pages load data(using fetch) from the backend using the correct endpoint.
+Make sure all functionalities are working as expected on the frontend.

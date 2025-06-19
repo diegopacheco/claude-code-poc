@@ -1,20 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { store } from '../store';
 
 export default function AssignToTeam() {
   const [selectedMember, setSelectedMember] = useState('');
   const [selectedTeam, setSelectedTeam] = useState('');
+  const [members, setMembers] = useState(store.getUnassignedMembers());
+  const [teams, setTeams] = useState(store.getTeams());
 
-  const members = store.getUnassignedMembers();
-  const teams = store.getTeams();
+  useEffect(() => {
+    const unsubscribe = store.subscribe(() => {
+      setMembers(store.getUnassignedMembers());
+      setTeams(store.getTeams());
+    });
+    return unsubscribe;
+  }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (selectedMember && selectedTeam) {
-      store.assignMemberToTeam(selectedMember, selectedTeam);
-      setSelectedMember('');
-      setSelectedTeam('');
-      alert('Member assigned to team successfully!');
+      try {
+        await store.assignMemberToTeam(selectedMember, selectedTeam);
+        setSelectedMember('');
+        setSelectedTeam('');
+      } catch (error) {
+        console.error('Failed to assign member to team:', error);
+      }
     }
   };
 

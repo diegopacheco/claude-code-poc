@@ -1,16 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { store } from '../store';
 
 export default function GiveFeedback() {
   const [content, setContent] = useState('');
   const [targetType, setTargetType] = useState<'team' | 'person'>('person');
   const [targetId, setTargetId] = useState('');
+  const [members, setMembers] = useState(store.getTeamMembers());
+  const [teams, setTeams] = useState(store.getTeams());
+  const [feedbacks, setFeedbacks] = useState(store.getFeedbacks());
 
-  const members = store.getTeamMembers();
-  const teams = store.getTeams();
-  const feedbacks = store.getFeedbacks();
+  useEffect(() => {
+    const unsubscribe = store.subscribe(() => {
+      setMembers(store.getTeamMembers());
+      setTeams(store.getTeams());
+      setFeedbacks(store.getFeedbacks());
+    });
+    return unsubscribe;
+  }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (content && targetId) {
       let targetName = '';
@@ -22,10 +30,13 @@ export default function GiveFeedback() {
         targetName = team?.name || '';
       }
       
-      store.addFeedback({ content, targetType, targetId, targetName });
-      setContent('');
-      setTargetId('');
-      alert('Feedback submitted successfully!');
+      try {
+        await store.addFeedback({ content, targetType, targetId, targetName });
+        setContent('');
+        setTargetId('');
+      } catch (error) {
+        console.error('Failed to submit feedback:', error);
+      }
     }
   };
 
