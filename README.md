@@ -20,6 +20,18 @@ Claude Code in action (my linux terminal)<br/>
 Claude Code doing a task <br/>
 <img src="results/claude-code-2.png" width="600" />
 
+Add team member <br/>
+<img src="results/app-result-1.png" width="600" />
+
+Create Team <br/>
+<img src="results/app-result-2.png" width="600" />
+
+Assign Team <br/>
+<img src="results/app-result-3.png" width="600" />
+
+Give Feedback <br/>
+<img src="results/app-result-4.png" width="600" />
+
 ## Stack
 
 * Frontend: React, TypeScript, Bun and Vite
@@ -59,6 +71,7 @@ cd claude-code-poc
 - `POST /api/v1/feedback` - Submit feedback
 
 ### Docker Commands
+
 ```bash
 # View logs
 docker-compose logs -f
@@ -85,6 +98,8 @@ PROS
 * When I give a task to add tests, added both unit and integration tests.
 * When I give a task to add tests it also run the tests, catch some bugs on the tests and fixed them.
 * Claude code used only ~30% CPU, I have 64 GB of ram, I have 64GB of ram, claude of using 0.6%(384 MB).
+* Even with missing 3 tasks to be done(when I run out of tokens) the app was working.
+* The code is pretty good, better than Codex and far superior then Jules.
 
 CONS
 
@@ -92,7 +107,7 @@ CONS
 * Does not open PRs on GitHub automatically.
 * > can you keep coding? (I was in the middle of task 5 and I used all my tokens)
   ⎿  Claude usage limit reached. Your limit will reset at 4am (America/Los_Angeles).
-
+* Tokens run out pretty fast - I still would need 3 more tasks(missing list feedback and manage team pages/backeend) to finish the app.
 
 ### Tokens Usage
 
