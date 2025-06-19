@@ -14,6 +14,9 @@ Claude-code-poc: POC using Claude code
 
 # Results
 
+Claude Code in action (my linux terminal)<br/>
+<img src="results/claude-code-1.png" width="600" />
+
 ## Stack
 
 * Frontend: React, TypeScript, Bun and Vite
