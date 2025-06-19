@@ -94,6 +94,37 @@ CONS
   ⎿  Claude usage limit reached. Your limit will reset at 4am (America/Los_Angeles).
 
 
+### Tokens Usage
+
+I asked claude about token usage and estimates based on tasks, I got this:
+
+```
+1. Rule of Thumb Approximations
+
+English text: ~4 characters = 1 token
+Code: ~3-4 characters = 1 token (varies by language)
+Average word: ~1.3 tokens per word
+
+2. Task Complexity Estimators
+Simple tasks (100-500 tokens):
+
+"Fix this syntax error"
+"Add a comment to this function"
+"Rename a variable"
+
+Medium tasks (500-2,000 tokens):
+
+"Implement a basic function"
+"Debug this error message"
+"Refactor this code block"
+
+Complex tasks (2,000-10,000+ tokens):
+
+"Implement user authentication"
+"Create a REST API endpoint"
+"Debug a multi-file issue"
+```
+
 ### Related POCs
 
 * OpenAI Codex POC https://github.com/diegopacheco/codex-poc
