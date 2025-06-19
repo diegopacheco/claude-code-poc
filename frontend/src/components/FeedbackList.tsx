@@ -6,7 +6,7 @@ export default function FeedbackList() {
   const [feedbacks, setFeedbacks] = useState(store.getFeedbacks());
   const [members, setMembers] = useState(store.getTeamMembers());
   const [teams, setTeams] = useState(store.getTeams());
-  const [filterType, setFilterType] = useState<'all' | 'team' | 'person'>('all');
+  const [filterType, setFilterType] = useState<'all' | 'team' | 'member'>('all');
   const [filterId, setFilterId] = useState<number | undefined>(undefined);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function FeedbackList() {
   };
 
   const filteredFeedbacks = getFilteredFeedbacks();
-  const filterTargets = filterType === 'person' ? members : teams;
+  const filterTargets = filterType === 'member' ? members : teams;
 
   return (
     <div style={{ padding: '20px', maxWidth: '800px' }}>
@@ -55,7 +55,7 @@ export default function FeedbackList() {
             style={{ padding: '5px', marginRight: '10px' }}
           >
             <option value="all">All Feedback</option>
-            <option value="person">Person</option>
+            <option value="member">Member</option>
             <option value="team">Team</option>
           </select>
         </div>
@@ -67,7 +67,7 @@ export default function FeedbackList() {
               onChange={(e) => setFilterId(e.target.value ? parseInt(e.target.value) : undefined)}
               style={{ padding: '5px' }}
             >
-              <option value="">All {filterType}s</option>
+              <option value="">All {filterType === 'member' ? 'members' : 'teams'}</option>
               {filterTargets.map(target => (
                 <option key={target.id} value={target.id}>
                   {target.name}
@@ -114,7 +114,7 @@ export default function FeedbackList() {
                     fontWeight: 'bold', 
                     color: feedback.target_type === 'team' ? '#28a745' : '#007bff'
                   }}>
-                    {feedback.target_type === 'person' 
+                    {feedback.target_type === 'member' 
                       ? members.find(m => m.id === feedback.target_id)?.name 
                       : teams.find(t => t.id === feedback.target_id)?.name
                     }

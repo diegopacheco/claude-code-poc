@@ -193,7 +193,7 @@ class Store {
     return this.teamMembers.filter(member => !member.teams || member.teams.length === 0);
   }
 
-  getFeedbackByTarget(targetType: 'team' | 'person', targetId?: number) {
+  getFeedbackByTarget(targetType: 'team' | 'member', targetId?: number) {
     let filtered = this.feedbacks.filter(f => f.target_type === targetType);
     if (targetId) {
       filtered = filtered.filter(f => f.target_id === targetId);
