@@ -90,7 +90,7 @@ CONS
 
 * Does not run on a isolated/docker env(like Codex or Jules).
 * Does not open PRs on GitHub automatically.
-* > can you keep coding?
+* > can you keep coding? (I was in the middle of task 5 and I used all my tokens)
   ⎿  Claude usage limit reached. Your limit will reset at 4am (America/Los_Angeles).
 
 
