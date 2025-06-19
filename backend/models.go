@@ -8,7 +8,7 @@ type TeamMember struct {
 	ID      uint   `json:"id" gorm:"primaryKey"`
 	Name    string `json:"name" gorm:"not null"`
 	Picture string `json:"picture"`
-	Email   string `json:"email" gorm:"uniqueIndex;not null"`
+	Email   string `json:"email" gorm:"uniqueIndex;not null;size:255"`
 	Teams   []Team `json:"teams" gorm:"many2many:member_teams;"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
@@ -26,7 +26,7 @@ type Team struct {
 type Feedback struct {
 	ID           uint   `json:"id" gorm:"primaryKey"`
 	Content      string `json:"content" gorm:"not null"`
-	TargetType   string `json:"target_type" gorm:"not null"`
+	TargetType   string `json:"target_type" gorm:"not null;size:50"`
 	TargetID     uint   `json:"target_id" gorm:"not null"`
 	CreatedAt    time.Time `json:"created_at"`
 	UpdatedAt    time.Time `json:"updated_at"`

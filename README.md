@@ -26,7 +26,54 @@ Claude Code doing a task <br/>
 * Backend: Go, Gin, Gorm, MySQL
 * Database: MySQL running in a Docker container
 
-## Developmement
+## Quick Start with Docker
+
+### Prerequisites
+- Docker and Docker Compose installed
+- Ports 3000, 8080, and 3306 available
+
+### Start the Full Stack
+```bash
+# Clone and navigate to the project
+git clone <repository-url>
+cd claude-code-poc
+
+# Start all services (MySQL, Backend, Frontend)
+./start.sh
+
+# Or start with clean database
+./start.sh --clean
+```
+
+### Service URLs
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:8080/api/v1
+- **MySQL Database**: localhost:3306
+
+### Available API Endpoints
+- `GET /api/v1/members` - List all team members
+- `POST /api/v1/members` - Create a new team member
+- `GET /api/v1/teams` - List all teams
+- `POST /api/v1/teams` - Create a new team
+- `POST /api/v1/assign/:teamId/:memberId` - Assign member to team
+- `POST /api/v1/feedback` - Submit feedback
+
+### Docker Commands
+```bash
+# View logs
+docker-compose logs -f
+
+# Stop all services
+docker-compose down
+
+# Rebuild and start
+docker-compose up --build
+
+# Access MySQL directly
+docker-compose exec mysql mysql -u coaching_user -pcoaching_password coaching_app
+```
+
+## Development
 
 This POC was developed using Claude Code(https://www.anthropic.com/claude-code), AI Engineering agent that can help you to develop software. <br/>
 
@@ -43,6 +90,8 @@ CONS
 
 * Does not run on a isolated/docker env(like Codex or Jules).
 * Does not open PRs on GitHub automatically.
+* > can you keep coding?
+  ⎿  Claude usage limit reached. Your limit will reset at 4am (America/Los_Angeles).
 
 
 ### Related POCs
