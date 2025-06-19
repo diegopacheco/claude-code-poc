@@ -76,7 +76,7 @@ export const api = {
     const response = await fetch(`${API_BASE_URL}/assign`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ team_id: teamId, member_id: memberId }),
+      body: JSON.stringify({ team_id: teamId, team_member_id: memberId }),
     });
     if (!response.ok) throw new Error('Failed to assign member to team');
   },

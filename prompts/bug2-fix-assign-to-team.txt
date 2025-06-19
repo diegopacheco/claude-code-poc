@@ -1,0 +1,34 @@
+Bug 02: Assign to team in the frontend is not working
+
+This is the error I see in chrome:
+
+index-CEK8w2xC.js:49 
+            
+           POST http://localhost:3000/api/v1/assign 404 (Not Found)
+assignToTeam @ index-CEK8w2xC.js:49
+assignMemberToTeam @ index-CEK8w2xC.js:49
+j @ index-CEK8w2xC.js:49
+xo @ index-CEK8w2xC.js:48
+(anonymous) @ index-CEK8w2xC.js:48
+Rf @ index-CEK8w2xC.js:48
+qc @ index-CEK8w2xC.js:48
+kc @ index-CEK8w2xC.js:49
+_h @ index-CEK8w2xC.js:49Understand this error
+index-CEK8w2xC.js:49 Failed to assign member to team: Error: Failed to assign member to team
+    at Object.assignToTeam (index-CEK8w2xC.js:49:36213)
+    at async kh.assignMemberToTeam (index-CEK8w2xC.js:49:38151)
+    at async j (index-CEK8w2xC.js:49:42030)
+overrideMethod @ hook.js:608
+assignMemberToTeam @ index-CEK8w2xC.js:49
+await in assignMemberToTeam
+j @ index-CEK8w2xC.js:49
+xo @ index-CEK8w2xC.js:48
+(anonymous) @ index-CEK8w2xC.js:48
+Rf @ index-CEK8w2xC.js:48
+qc @ index-CEK8w2xC.js:48
+kc @ index-CEK8w2xC.js:49
+_h @ index-CEK8w2xC.js:49Understand this error
+index-CEK8w2xC.js:49 Failed to assign member to team: Error: Failed to assign member to team
+    at Object.assignToTeam (index-CEK8w2xC.js:49:36213)
+    at async kh.assignMemberToTeam (index-CEK8w2xC.js:49:38151)
+    at async j (index-CEK8w2xC.js:49:42030)

@@ -43,8 +43,17 @@ fi
 echo "6. ✅ Testing frontend..."
 curl -s http://localhost:3000 | grep -q "Coaching App" && echo "   ✅ Frontend accessible and title found" || echo "   ❌ Frontend not accessible"
 
-# Test 7: Test logo accessibility
-echo "7. ✅ Testing logo..."
+# Test 7: Test member assignment
+echo "7. ✅ Testing member assignment..."
+ASSIGN_RESULT=$(curl -s -X POST -H "Content-Type: application/json" -d '{"team_id": 1, "team_member_id": 2}' http://localhost:3000/api/v1/assign)
+if echo $ASSIGN_RESULT | grep -q "successfully"; then
+    echo "   ✅ Member assignment working through frontend"
+else
+    echo "   ❌ Member assignment failed: $ASSIGN_RESULT"
+fi
+
+# Test 8: Test logo accessibility
+echo "8. ✅ Testing logo..."
 curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/logo-app.png | grep -q "200" && echo "   ✅ Logo accessible" || echo "   ⚠️  Logo not accessible (may need refresh)"
 
 echo ""
@@ -54,7 +63,8 @@ echo "📋 Manual testing recommendations:"
 echo "   1. Open http://localhost:3000 in browser"
 echo "   2. Try creating a team member"
 echo "   3. Try creating a team"  
-echo "   4. Try assigning a member to a team"
+echo "   4. Try assigning a member to a team (FIXED!)"
 echo "   5. Try giving feedback"
 echo "   6. Check if logo appears in header"
 echo "   7. Verify toast notifications appear on success"
+echo "   8. Run './test-assign-functionality.sh' for detailed assignment testing"
