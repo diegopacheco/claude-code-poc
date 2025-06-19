@@ -34,6 +34,10 @@ PROS
 
 * It's running in your local machine.
 * It tells you how many tokens are being used.
+* Because is local machine, it gets the tasks done a bit faster then Codex and a LOT faster Jules.
+* When I give a task to add tests, added both unit and integration tests.
+* When I give a task to add tests it also run the tests, catch some bugs on the tests and fixed them.
+* 
 
 CONS
 

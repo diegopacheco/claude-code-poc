@@ -1,0 +1,3 @@
+Task 3: Create tests for the Frontend.
+
+Consumptions: ~16k tokens.
