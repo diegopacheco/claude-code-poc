@@ -12,7 +12,7 @@ export default function TeamManagement() {
     return unsubscribe;
   }, []);
 
-  const handleRemoveMember = async (teamId: string, memberId: string) => {
+  const handleRemoveMember = async (teamId: number, memberId: number) => {
     if (window.confirm('Are you sure you want to remove this member from the team?')) {
       try {
         await store.removeFromTeam(teamId, memberId);
@@ -22,7 +22,7 @@ export default function TeamManagement() {
     }
   };
 
-  const handleDeleteTeam = async (teamId: string) => {
+  const handleDeleteTeam = async (teamId: number) => {
     if (window.confirm('Are you sure you want to delete this team? This will remove all member assignments.')) {
       try {
         await store.deleteTeam(teamId);

@@ -1,23 +1,27 @@
 export interface TeamMember {
-  id: string;
+  id: number;
   name: string;
   email: string;
   picture: string;
-  teamId?: string;
+  teams: Team[];
+  created_at: string;
+  updated_at: string;
 }
 
 export interface Team {
-  id: string;
+  id: number;
   name: string;
   logo: string;
   members: TeamMember[];
+  created_at: string;
+  updated_at: string;
 }
 
 export interface Feedback {
-  id: string;
+  id: number;
   content: string;
-  targetType: 'team' | 'person';
-  targetId: string;
-  targetName: string;
-  date: string;
+  target_type: 'team' | 'person';
+  target_id: number;
+  created_at: string;
+  updated_at: string;
 }

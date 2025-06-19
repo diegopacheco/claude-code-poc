@@ -7,7 +7,7 @@ export default function FeedbackList() {
   const [members, setMembers] = useState(store.getTeamMembers());
   const [teams, setTeams] = useState(store.getTeams());
   const [filterType, setFilterType] = useState<'all' | 'team' | 'person'>('all');
-  const [filterId, setFilterId] = useState('');
+  const [filterId, setFilterId] = useState<number | undefined>(undefined);
 
   useEffect(() => {
     const unsubscribe = store.subscribe(() => {
@@ -50,7 +50,7 @@ export default function FeedbackList() {
             value={filterType}
             onChange={(e) => {
               setFilterType(e.target.value as any);
-              setFilterId('');
+              setFilterId(undefined);
             }}
             style={{ padding: '5px', marginRight: '10px' }}
           >
@@ -63,8 +63,8 @@ export default function FeedbackList() {
         {filterType !== 'all' && (
           <div>
             <select
-              value={filterId}
-              onChange={(e) => setFilterId(e.target.value)}
+              value={filterId || ''}
+              onChange={(e) => setFilterId(e.target.value ? parseInt(e.target.value) : undefined)}
               style={{ padding: '5px' }}
             >
               <option value="">All {filterType}s</option>
@@ -112,23 +112,26 @@ export default function FeedbackList() {
                 <div>
                   <span style={{ 
                     fontWeight: 'bold', 
-                    color: feedback.targetType === 'team' ? '#28a745' : '#007bff'
+                    color: feedback.target_type === 'team' ? '#28a745' : '#007bff'
                   }}>
-                    {feedback.targetName}
+                    {feedback.target_type === 'person' 
+                      ? members.find(m => m.id === feedback.target_id)?.name 
+                      : teams.find(t => t.id === feedback.target_id)?.name
+                    }
                   </span>
                   <span style={{ 
                     marginLeft: '8px',
                     padding: '2px 8px',
-                    backgroundColor: feedback.targetType === 'team' ? '#28a745' : '#007bff',
+                    backgroundColor: feedback.target_type === 'team' ? '#28a745' : '#007bff',
                     color: 'white',
                     borderRadius: '12px',
                     fontSize: '12px'
                   }}>
-                    {feedback.targetType}
+                    {feedback.target_type}
                   </span>
                 </div>
                 <div style={{ fontSize: '12px', color: '#666' }}>
-                  {new Date(feedback.date).toLocaleString()}
+                  {new Date(feedback.created_at).toLocaleString()}
                 </div>
               </div>
               

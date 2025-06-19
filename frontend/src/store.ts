@@ -57,7 +57,7 @@ class Store {
     }
   }
 
-  async addTeamMember(member: Omit<TeamMember, 'id'>) {
+  async addTeamMember(member: Omit<TeamMember, 'id' | 'teams' | 'created_at' | 'updated_at'>) {
     try {
       const newMember = await api.createMember(member);
       this.teamMembers.push(newMember);
@@ -70,7 +70,7 @@ class Store {
     }
   }
 
-  async addTeam(team: Omit<Team, 'id' | 'members'>) {
+  async addTeam(team: Omit<Team, 'id' | 'members' | 'created_at' | 'updated_at'>) {
     try {
       const newTeam = await api.createTeam(team);
       this.teams.push(newTeam);
@@ -83,7 +83,7 @@ class Store {
     }
   }
 
-  async assignMemberToTeam(memberId: string, teamId: string) {
+  async assignMemberToTeam(memberId: number, teamId: number) {
     try {
       await api.assignToTeam(teamId, memberId);
       
@@ -92,7 +92,11 @@ class Store {
       const team = this.teams.find(t => t.id === teamId);
       
       if (member && team) {
-        member.teamId = teamId;
+        // Update member's teams array
+        if (!member.teams.find(t => t.id === teamId)) {
+          member.teams.push(team);
+        }
+        // Update team's members array
         if (!team.members.find(m => m.id === memberId)) {
           team.members.push(member);
         }
@@ -106,7 +110,7 @@ class Store {
     }
   }
 
-  async removeFromTeam(teamId: string, memberId: string) {
+  async removeFromTeam(teamId: number, memberId: number) {
     try {
       await api.removeFromTeam(teamId, memberId);
       
@@ -115,7 +119,9 @@ class Store {
       const team = this.teams.find(t => t.id === teamId);
       
       if (member && team) {
-        member.teamId = undefined;
+        // Remove team from member's teams array
+        member.teams = member.teams.filter(t => t.id !== teamId);
+        // Remove member from team's members array
         team.members = team.members.filter(m => m.id !== memberId);
       }
       
@@ -127,17 +133,15 @@ class Store {
     }
   }
 
-  async deleteTeam(teamId: string) {
+  async deleteTeam(teamId: number) {
     try {
       await api.deleteTeam(teamId);
       
       // Update local state
       this.teams = this.teams.filter(t => t.id !== teamId);
-      // Remove team assignments from members
+      // Remove team from all members' teams arrays
       this.teamMembers.forEach(member => {
-        if (member.teamId === teamId) {
-          member.teamId = undefined;
-        }
+        member.teams = member.teams.filter(t => t.id !== teamId);
       });
       
       this.showToast('Team deleted successfully!');
@@ -148,7 +152,7 @@ class Store {
     }
   }
 
-  async addFeedback(feedback: Omit<Feedback, 'id' | 'date'>) {
+  async addFeedback(feedback: Omit<Feedback, 'id' | 'created_at' | 'updated_at'>) {
     try {
       const newFeedback = await api.createFeedback(feedback);
       this.feedbacks.push(newFeedback);
@@ -174,13 +178,13 @@ class Store {
   }
 
   getUnassignedMembers() {
-    return this.teamMembers.filter(member => !member.teamId);
+    return this.teamMembers.filter(member => member.teams.length === 0);
   }
 
-  getFeedbackByTarget(targetType: 'team' | 'person', targetId?: string) {
-    let filtered = this.feedbacks.filter(f => f.targetType === targetType);
+  getFeedbackByTarget(targetType: 'team' | 'person', targetId?: number) {
+    let filtered = this.feedbacks.filter(f => f.target_type === targetType);
     if (targetId) {
-      filtered = filtered.filter(f => f.targetId === targetId);
+      filtered = filtered.filter(f => f.target_id === targetId);
     }
     return filtered;
   }

@@ -31,7 +31,11 @@ export default function GiveFeedback() {
       }
       
       try {
-        await store.addFeedback({ content, targetType, targetId, targetName });
+        await store.addFeedback({ 
+          content, 
+          target_type: targetType, 
+          target_id: parseInt(targetId) 
+        });
         setContent('');
         setTargetId('');
       } catch (error) {
@@ -119,11 +123,14 @@ export default function GiveFeedback() {
               backgroundColor: '#f8f9fa'
             }}>
               <div style={{ fontWeight: 'bold', marginBottom: '5px' }}>
-                To: {feedback.targetName} ({feedback.targetType})
+                To: {feedback.target_type === 'person' 
+                  ? members.find(m => m.id === feedback.target_id)?.name 
+                  : teams.find(t => t.id === feedback.target_id)?.name
+                } ({feedback.target_type})
               </div>
               <div style={{ marginBottom: '5px' }}>{feedback.content}</div>
               <div style={{ fontSize: '12px', color: '#666' }}>
-                {new Date(feedback.date).toLocaleString()}
+                {new Date(feedback.created_at).toLocaleString()}
               </div>
             </div>
           ))

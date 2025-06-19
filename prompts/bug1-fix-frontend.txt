@@ -2,3 +2,8 @@ Bug 1: Make sure frontend is working
 
 Make sure all frontend pages load data(using fetch) from the backend using the correct endpoint.
 Make sure all functionalities are working as expected on the frontend.
+logo-app.png is not loading in the header of menu properly.
+ ./build-all.sh is not working - some tests failling looks like
+Also I think all frontend pages when submit to the backend are not properly working.
+
+Consumptions: ~30k tokens.

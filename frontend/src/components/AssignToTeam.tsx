@@ -19,7 +19,7 @@ export default function AssignToTeam() {
     e.preventDefault();
     if (selectedMember && selectedTeam) {
       try {
-        await store.assignMemberToTeam(selectedMember, selectedTeam);
+        await store.assignMemberToTeam(parseInt(selectedMember), parseInt(selectedTeam));
         setSelectedMember('');
         setSelectedTeam('');
       } catch (error) {

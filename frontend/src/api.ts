@@ -10,7 +10,7 @@ export const api = {
     return response.json();
   },
 
-  async createMember(member: Omit<TeamMember, 'id'>): Promise<TeamMember> {
+  async createMember(member: Omit<TeamMember, 'id' | 'teams' | 'created_at' | 'updated_at'>): Promise<TeamMember> {
     const response = await fetch(`${API_BASE_URL}/members`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -20,7 +20,7 @@ export const api = {
     return response.json();
   },
 
-  async updateMember(id: string, member: Partial<TeamMember>): Promise<TeamMember> {
+  async updateMember(id: number, member: Partial<TeamMember>): Promise<TeamMember> {
     const response = await fetch(`${API_BASE_URL}/members/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -30,7 +30,7 @@ export const api = {
     return response.json();
   },
 
-  async deleteMember(id: string): Promise<void> {
+  async deleteMember(id: number): Promise<void> {
     const response = await fetch(`${API_BASE_URL}/members/${id}`, {
       method: 'DELETE',
     });
@@ -44,7 +44,7 @@ export const api = {
     return response.json();
   },
 
-  async createTeam(team: Omit<Team, 'id' | 'members'>): Promise<Team> {
+  async createTeam(team: Omit<Team, 'id' | 'members' | 'created_at' | 'updated_at'>): Promise<Team> {
     const response = await fetch(`${API_BASE_URL}/teams`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -54,7 +54,7 @@ export const api = {
     return response.json();
   },
 
-  async updateTeam(id: string, team: Partial<Team>): Promise<Team> {
+  async updateTeam(id: number, team: Partial<Team>): Promise<Team> {
     const response = await fetch(`${API_BASE_URL}/teams/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -64,7 +64,7 @@ export const api = {
     return response.json();
   },
 
-  async deleteTeam(id: string): Promise<void> {
+  async deleteTeam(id: number): Promise<void> {
     const response = await fetch(`${API_BASE_URL}/teams/${id}`, {
       method: 'DELETE',
     });
@@ -72,7 +72,7 @@ export const api = {
   },
 
   // Team Assignment
-  async assignToTeam(teamId: string, memberId: string): Promise<void> {
+  async assignToTeam(teamId: number, memberId: number): Promise<void> {
     const response = await fetch(`${API_BASE_URL}/assign`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -81,7 +81,7 @@ export const api = {
     if (!response.ok) throw new Error('Failed to assign member to team');
   },
 
-  async removeFromTeam(teamId: string, memberId: string): Promise<void> {
+  async removeFromTeam(teamId: number, memberId: number): Promise<void> {
     const response = await fetch(`${API_BASE_URL}/remove-member/${teamId}/${memberId}`, {
       method: 'DELETE',
     });
@@ -95,21 +95,21 @@ export const api = {
     return response.json();
   },
 
-  async createFeedback(feedback: Omit<Feedback, 'id' | 'date'>): Promise<Feedback> {
+  async createFeedback(feedback: Omit<Feedback, 'id' | 'created_at' | 'updated_at'>): Promise<Feedback> {
     const response = await fetch(`${API_BASE_URL}/feedback`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         content: feedback.content,
-        target_type: feedback.targetType,
-        target_id: feedback.targetId,
+        target_type: feedback.target_type,
+        target_id: feedback.target_id,
       }),
     });
     if (!response.ok) throw new Error('Failed to create feedback');
     return response.json();
   },
 
-  async deleteFeedback(id: string): Promise<void> {
+  async deleteFeedback(id: number): Promise<void> {
     const response = await fetch(`${API_BASE_URL}/feedback/${id}`, {
       method: 'DELETE',
     });
