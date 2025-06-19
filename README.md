@@ -32,6 +32,12 @@ Assign Team <br/>
 Give Feedback <br/>
 <img src="results/app-result-4.png" width="600" />
 
+View Feedback <br/>
+<img src="results/app-result-5.png" width="600" />
+
+Manage Team <br/>
+<img src="results/app-result-6.png" width="600" />
+
 ## Stack
 
 * Frontend: React, TypeScript, Bun and Vite
