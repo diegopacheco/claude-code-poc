@@ -37,6 +37,9 @@ PROS
 
 CONS
 
+* Does not run on a isolated/docker env(like Codex or Jules).
+* Does not open PRs on GitHub automatically.
+
 
 ### Related POCs
 
