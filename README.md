@@ -112,6 +112,8 @@ CONS
 * Next Day: when my tokens was back, I asked to fix a bunch of small bugs. It create a second script build-working.sh instead of use the one that already existed build-all.sh.
 * Instead of doing proper integration tests with go, is goind bach scripts with curl and jq.
 
+All the prompts for tasks/bugs are here: https://github.com/diegopacheco/claude-code-poc/tree/main/prompts
+
 ### Tokens Usage
 
 I asked claude about token usage and estimates based on tasks, I got this:
