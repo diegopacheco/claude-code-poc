@@ -5,17 +5,20 @@ Claude-code-poc: POC using Claude code
 
 <img src="logo-app.png" width="200" />
 
-# Features
+## Features
 
 * Create and manage team members
 * Assign members to teams
 * Provide feedback on team performance
 * Provide feedback on people performance
 
-# Results
+## Results
 
 Claude Code in action (my linux terminal)<br/>
 <img src="results/claude-code-1.png" width="600" />
+
+Claude Code doing a task <br/>
+<img src="results/claude-code-2.png" width="600" />
 
 ## Stack
 
@@ -28,6 +31,9 @@ Claude Code in action (my linux terminal)<br/>
 This POC was developed using Claude Code(https://www.anthropic.com/claude-code), AI Engineering agent that can help you to develop software. <br/>
 
 PROS
+
+* It's running in your local machine.
+* It tells you how many tokens are being used.
 
 CONS
 
