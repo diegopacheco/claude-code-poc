@@ -1,0 +1,41 @@
+Bug 05: View feedback is not working and manage team has errors.
+
+When I select person or team and them on the second combo I select a person or a team I see nothing.
+
+There is not errors on chrome console.
+
+When I click in manage team page I also see a lot of errors in the console.
+
+    
+            
+           GET https://via.placeholder.com/40x40?text=User net::ERR_NAME_NOT_RESOLVED
+Image
+onError @ index-w5K4Hyx0.js:49
+xo @ index-w5K4Hyx0.js:48
+(anonymous) @ index-w5K4Hyx0.js:48
+Rf @ index-w5K4Hyx0.js:48
+qc @ index-w5K4Hyx0.js:48
+kc @ index-w5K4Hyx0.js:49Understand this error
+via.placeholder.com/50x50?text=Team:1 
+            
+            
+           GET https://via.placeholder.com/50x50?text=Team net::ERR_NAME_NOT_RESOLVED
+Image
+onError @ index-w5K4Hyx0.js:49
+xo @ index-w5K4Hyx0.js:48
+(anonymous) @ index-w5K4Hyx0.js:48
+Rf @ index-w5K4Hyx0.js:48
+qc @ index-w5K4Hyx0.js:48
+kc @ index-w5K4Hyx0.js:49Understand this error
+via.placeholder.com/40x40?text=User:1 
+            
+            
+           GET https://via.placeholder.com/40x40?text=User net::ERR_NAME_NOT_RESOLVED
+Image
+onError @ index-w5K4Hyx0.js:49
+xo @ index-w5K4Hyx0.js:48
+(anonymous) @ index-w5K4Hyx0.js:48
+Rf @ index-w5K4Hyx0.js:48
+qc @ index-w5K4Hyx0.js:48
+kc @ index-w5K4Hyx0.js:49Understand this error
+via.placeholder.com/50x50?text=Team:1 
