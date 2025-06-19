@@ -123,6 +123,17 @@ Complex tasks (2,000-10,000+ tokens):
 "Implement user authentication"
 "Create a REST API endpoint"
 "Debug a multi-file issue"
+
+Token Costs by Model
+Claude Sonnet 4 (current model):
+
+Input: ~$3 per million tokens
+Output: ~$15 per million tokens
+
+Estimation Example:
+
+Medium task (~2k input + 1k output tokens) ≈ $0.021
+Complex task (~5k input + 3k output tokens) ≈ $0.060
 ```
 
 ### Related POCs
