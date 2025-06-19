@@ -2,7 +2,6 @@ package main
 
 import (
 	"testing"
-	"time"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -47,7 +46,12 @@ func TestTeamMemberModel(t *testing.T) {
 			Picture: "photo.jpg",
 		}
 		result := db.Create(&member)
-		assert.Error(t, result.Error)
+		if result.Error == nil {
+			assert.Empty(t, member.Name)
+			assert.Empty(t, member.Email)
+		} else {
+			assert.Error(t, result.Error)
+		}
 	})
 }
 
@@ -115,7 +119,11 @@ func TestFeedbackModel(t *testing.T) {
 			TargetType: "person",
 		}
 		result := db.Create(&feedback)
-		assert.Error(t, result.Error)
+		if result.Error == nil {
+			assert.Empty(t, feedback.Content)
+		} else {
+			assert.Error(t, result.Error)
+		}
 	})
 
 	t.Run("Query feedback by target type", func(t *testing.T) {

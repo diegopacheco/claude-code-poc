@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"testing"
 
+	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 )
@@ -123,7 +124,7 @@ func (suite *IntegrationTestSuite) TestFeedbackManagement() {
 	teamID := suite.createTeam("Test Team", "test-logo.png")
 	
 	feedback1ID := suite.createFeedback("Individual feedback", "person", memberID)
-	feedback2ID := suite.createFeedback("Team feedback", "team", teamID)
+	_ = suite.createFeedback("Team feedback", "team", teamID)
 	
 	feedback1 := suite.getFeedbackByID(feedback1ID)
 	assert.Equal(suite.T(), "Individual feedback", feedback1.Content)
@@ -300,7 +301,7 @@ func (suite *IntegrationTestSuite) deleteTeam(id uint) {
 }
 
 func (suite *IntegrationTestSuite) removeMemberFromTeam(teamID, memberID uint) {
-	req, _ := http.NewRequest("DELETE", "/api/v1/teams/"+strconv.Itoa(int(teamID))+"/members/"+strconv.Itoa(int(memberID)), nil)
+	req, _ := http.NewRequest("DELETE", "/api/v1/remove-member/"+strconv.Itoa(int(teamID))+"/"+strconv.Itoa(int(memberID)), nil)
 	w := httptest.NewRecorder()
 	suite.router.ServeHTTP(w, req)
 	

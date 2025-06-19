@@ -28,8 +28,9 @@ func main() {
 			teams.GET("/:id", GetTeam)
 			teams.PUT("/:id", UpdateTeam)
 			teams.DELETE("/:id", DeleteTeam)
-			teams.DELETE("/:teamId/members/:memberId", RemoveFromTeam)
 		}
+		
+		api.DELETE("/remove-member/:teamId/:memberId", RemoveFromTeam)
 
 		api.POST("/assign", AssignToTeam)
 

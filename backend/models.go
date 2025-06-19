@@ -2,7 +2,6 @@ package main
 
 import (
 	"time"
-	"gorm.io/gorm"
 )
 
 type TeamMember struct {
@@ -10,7 +9,7 @@ type TeamMember struct {
 	Name    string `json:"name" gorm:"not null"`
 	Picture string `json:"picture"`
 	Email   string `json:"email" gorm:"uniqueIndex;not null"`
-	Teams   []Team `json:"teams" gorm:"many2many:team_members;"`
+	Teams   []Team `json:"teams" gorm:"many2many:member_teams;"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
@@ -19,7 +18,7 @@ type Team struct {
 	ID       uint         `json:"id" gorm:"primaryKey"`
 	Name     string       `json:"name" gorm:"not null"`
 	Logo     string       `json:"logo"`
-	Members  []TeamMember `json:"members" gorm:"many2many:team_members;"`
+	Members  []TeamMember `json:"members" gorm:"many2many:member_teams;"`
 	CreatedAt time.Time   `json:"created_at"`
 	UpdatedAt time.Time   `json:"updated_at"`
 }

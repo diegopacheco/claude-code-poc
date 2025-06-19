@@ -11,15 +11,26 @@ func SetupTestDB() *gorm.DB {
 		panic("failed to connect to test database")
 	}
 
-	err = db.AutoMigrate(&TeamMember{}, &Team{}, &Feedback{})
+	err = db.AutoMigrate(&Feedback{})
 	if err != nil {
-		panic("failed to migrate test database")
+		panic("failed to migrate feedback table")
+	}
+
+	err = db.AutoMigrate(&TeamMember{})
+	if err != nil {
+		panic("failed to migrate team member table")
+	}
+
+	err = db.AutoMigrate(&Team{})
+	if err != nil {
+		panic("failed to migrate team table")
 	}
 
 	return db
 }
 
 func CleanupTestDB(db *gorm.DB) {
+	db.Exec("DELETE FROM member_teams")
 	db.Exec("DELETE FROM team_members")
 	db.Exec("DELETE FROM teams")
 	db.Exec("DELETE FROM feedbacks")
