@@ -106,6 +106,7 @@ PROS
 * Claude code used only ~30% CPU, I have 64 GB of ram, I have 64GB of ram, claude of using 0.6%(384 MB).
 * Even with missing 3 tasks to be done(when I run out of tokens) the app was working.
 * The code is pretty good, better than Codex and far superior then Jules.
+* I'm storing in /prompts all tasks/bugs. I asked claude code to generate release notes for me and created releasenotes.md which is pretty good.
 
 CONS
 
