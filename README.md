@@ -37,7 +37,7 @@ PROS
 * Because is local machine, it gets the tasks done a bit faster then Codex and a LOT faster Jules.
 * When I give a task to add tests, added both unit and integration tests.
 * When I give a task to add tests it also run the tests, catch some bugs on the tests and fixed them.
-* 
+* Claude code used only ~30% CPU, I have 64 GB of ram, clause sucked 25 GB of ram on virtual memory.
 
 CONS
 
