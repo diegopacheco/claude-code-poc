@@ -20,7 +20,7 @@ export interface Team {
 export interface Feedback {
   id: number;
   content: string;
-  target_type: 'team' | 'person';
+  target_type: 'team' | 'member';
   target_id: number;
   created_at: string;
   updated_at: string;

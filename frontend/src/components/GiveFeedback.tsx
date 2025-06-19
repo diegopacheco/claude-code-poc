@@ -3,7 +3,7 @@ import { store } from '../store';
 
 export default function GiveFeedback() {
   const [content, setContent] = useState('');
-  const [targetType, setTargetType] = useState<'team' | 'person'>('person');
+  const [targetType, setTargetType] = useState<'team' | 'member'>('member');
   const [targetId, setTargetId] = useState('');
   const [members, setMembers] = useState(store.getTeamMembers());
   const [teams, setTeams] = useState(store.getTeams());
@@ -22,7 +22,7 @@ export default function GiveFeedback() {
     e.preventDefault();
     if (content && targetId) {
       let targetName = '';
-      if (targetType === 'person') {
+      if (targetType === 'member') {
         const member = members.find(m => m.id === targetId);
         targetName = member?.name || '';
       } else {
@@ -44,7 +44,7 @@ export default function GiveFeedback() {
     }
   };
 
-  const targets = targetType === 'person' ? members : teams;
+  const targets = targetType === 'member' ? members : teams;
 
   return (
     <div style={{ padding: '20px', maxWidth: '600px' }}>
@@ -54,11 +54,11 @@ export default function GiveFeedback() {
           <label style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
             <input
               type="radio"
-              value="person"
-              checked={targetType === 'person'}
-              onChange={(e) => setTargetType(e.target.value as 'person')}
+              value="member"
+              checked={targetType === 'member'}
+              onChange={(e) => setTargetType(e.target.value as 'member')}
             />
-            Person
+            Member
           </label>
           <label style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
             <input
@@ -123,7 +123,7 @@ export default function GiveFeedback() {
               backgroundColor: '#f8f9fa'
             }}>
               <div style={{ fontWeight: 'bold', marginBottom: '5px' }}>
-                To: {feedback.target_type === 'person' 
+                To: {feedback.target_type === 'member' 
                   ? members.find(m => m.id === feedback.target_id)?.name 
                   : teams.find(t => t.id === feedback.target_id)?.name
                 } ({feedback.target_type})
