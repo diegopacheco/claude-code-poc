@@ -1,0 +1,16 @@
+Bug 03: When I click on the Assign menu I got a blank page.
+
+When I look the chrome console I see the following error:
+
+index-DfxzoHds.js:49 Uncaught TypeError: Cannot read properties of null (reading 'length')
+    at index-DfxzoHds.js:49:39556
+    at Array.filter (<anonymous>)
+    at kh.getUnassignedMembers (index-DfxzoHds.js:49:39538)
+    at Fh (index-DfxzoHds.js:49:41844)
+    at Ci (index-DfxzoHds.js:48:34117)
+    at ec (index-DfxzoHds.js:48:62038)
+    at jr (index-DfxzoHds.js:48:72542)
+    at no (index-DfxzoHds.js:48:106519)
+    at Z0 (index-DfxzoHds.js:48:105598)
+    at Mc (index-DfxzoHds.js:48:105433)
+

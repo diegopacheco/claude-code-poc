@@ -48,7 +48,11 @@ class Store {
         api.getTeams(),
         api.getFeedback(),
       ]);
-      this.teamMembers = members;
+      // Normalize data - ensure teams arrays are never null
+      this.teamMembers = members.map(member => ({
+        ...member,
+        teams: member.teams || []
+      }));
       this.teams = teams;
       this.feedbacks = feedbacks;
       this.notifyListeners();
@@ -92,6 +96,10 @@ class Store {
       const team = this.teams.find(t => t.id === teamId);
       
       if (member && team) {
+        // Initialize teams array if null
+        if (!member.teams) {
+          member.teams = [];
+        }
         // Update member's teams array
         if (!member.teams.find(t => t.id === teamId)) {
           member.teams.push(team);
@@ -120,7 +128,9 @@ class Store {
       
       if (member && team) {
         // Remove team from member's teams array
-        member.teams = member.teams.filter(t => t.id !== teamId);
+        if (member.teams) {
+          member.teams = member.teams.filter(t => t.id !== teamId);
+        }
         // Remove member from team's members array
         team.members = team.members.filter(m => m.id !== memberId);
       }
@@ -141,7 +151,9 @@ class Store {
       this.teams = this.teams.filter(t => t.id !== teamId);
       // Remove team from all members' teams arrays
       this.teamMembers.forEach(member => {
-        member.teams = member.teams.filter(t => t.id !== teamId);
+        if (member.teams) {
+          member.teams = member.teams.filter(t => t.id !== teamId);
+        }
       });
       
       this.showToast('Team deleted successfully!');
@@ -178,7 +190,7 @@ class Store {
   }
 
   getUnassignedMembers() {
-    return this.teamMembers.filter(member => member.teams.length === 0);
+    return this.teamMembers.filter(member => !member.teams || member.teams.length === 0);
   }
 
   getFeedbackByTarget(targetType: 'team' | 'person', targetId?: number) {

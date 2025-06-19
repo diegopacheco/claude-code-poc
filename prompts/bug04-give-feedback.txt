@@ -1,0 +1,35 @@
+Bug 04: Give feedback is not working
+
+When I submit a feedback I got this error in chrome console:
+
+index-BZAcvKkh.js:49 
+            
+            
+           POST http://localhost:3000/api/v1/feedback 400 (Bad Request)
+createFeedback @ index-BZAcvKkh.js:49
+addFeedback @ index-BZAcvKkh.js:49
+al @ index-BZAcvKkh.js:49
+xo @ index-BZAcvKkh.js:48
+(anonymous) @ index-BZAcvKkh.js:48
+Rf @ index-BZAcvKkh.js:48
+qc @ index-BZAcvKkh.js:48
+kc @ index-BZAcvKkh.js:49
+_h @ index-BZAcvKkh.js:49Understand this error
+index-BZAcvKkh.js:49 Failed to add feedback: Error: Failed to create feedback
+    at Object.createFeedback (index-BZAcvKkh.js:49:36770)
+    at async kh.addFeedback (index-BZAcvKkh.js:49:39269)
+    at async al (index-BZAcvKkh.js:49:44041)
+overrideMethod @ hook.js:608
+addFeedback @ index-BZAcvKkh.js:49
+await in addFeedback
+al @ index-BZAcvKkh.js:49
+xo @ index-BZAcvKkh.js:48
+(anonymous) @ index-BZAcvKkh.js:48
+Rf @ index-BZAcvKkh.js:48
+qc @ index-BZAcvKkh.js:48
+kc @ index-BZAcvKkh.js:49
+_h @ index-BZAcvKkh.js:49Understand this error
+index-BZAcvKkh.js:49 Failed to submit feedback: Error: Failed to create feedback
+    at Object.createFeedback (index-BZAcvKkh.js:49:36770)
+    at async kh.addFeedback (index-BZAcvKkh.js:49:39269)
+    at async al (index-BZAcvKkh.js:49:44041)
