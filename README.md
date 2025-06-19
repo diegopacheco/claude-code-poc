@@ -108,6 +108,7 @@ CONS
 * > can you keep coding? (I was in the middle of task 5 and I used all my tokens)
   ⎿  Claude usage limit reached. Your limit will reset at 4am (America/Los_Angeles).
 * Tokens run out pretty fast - I still would need 3 more tasks(missing list feedback and manage team pages/backeend) to finish the app.
+* My tokens expire about in 1h coding.
 
 ### Tokens Usage
 
