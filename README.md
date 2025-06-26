@@ -168,3 +168,4 @@ Complex task (~5k input + 3k output tokens) ≈ $0.060
 * OpenAI Codex POC https://github.com/diegopacheco/codex-poc
 * Google Jules https://github.com/diegopacheco/google-jules-poc
 * Cursor POC https://github.com/diegopacheco/docker-cleanup
+* Gemini-cli POC: https://github.com/diegopacheco/gemini-cli-poc
