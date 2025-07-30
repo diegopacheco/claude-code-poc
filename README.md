@@ -3,6 +3,8 @@
 A Simple Team Coaching App without sugar. <br/>
 Claude-code-poc: POC using Claude code
 
+Built with Claude Code: https://www.anthropic.com/claude-code
+
 <img src="logo-app.png" width="200" />
 
 ## Features
